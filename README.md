@@ -13,6 +13,22 @@ Briefly, You want more control, and you feel that pure vanilla webpack can give 
 
 These reasons should be enough to use this gem, but at the end it's more a subject of taste than reasons, everyone has to choose what a delicious food means!
 
+## Want to use ONLY WebpackNative in your project?
+
+If you want to use WebpackNative alone on your new project you can skip the default Rails javascript and the asset pipeline using:
+
+```
+rails new app_name -d postgresql --skip-javascript --no-sprockets
+```
+
+If have an existing project and you want to remove the asset pipeline from your app follow this [tutorial](https://andre.arko.net/2020/07/09/rails-6-with-webpack-in-appassets-and-no-sprockets/)
+
+and to remove webpacker, the answers here may help:
+
+[https://stackoverflow.com/questions/49107973/how-to-completely-remove-webpack-and-all-its-dependencies-from-rails-app](https://stackoverflow.com/questions/49107973/how-to-completely-remove-webpack-and-all-its-dependencies-from-rails-app)
+
+[https://github.com/rails/webpacker/issues/1333](https://github.com/rails/webpacker/issues/1333)
+
 ## Installation
 
 Add this line to your application's Gemfile:
