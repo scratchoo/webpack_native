@@ -1,8 +1,17 @@
 # WebpackNative
 
-Welcome to your new gem! In this directory, you'll find the files you need to be able to package up your Ruby library into a gem. Put your Ruby code in the file `lib/webpack_native`. To experiment with that code, run `bin/console` for an interactive prompt.
+This gem is for you if:
 
-TODO: Delete this and the text above, and describe your gem
+- You want something fast in compilation.
+- You want something easy, no complicated DSL.
+- You want to use the same tool for handling all your assets (webpack does the job already).
+- You want all your files including the configuration to be in on place (and you just don't like spending time trying to remember where should you put the providePlugin!).
+- You want to write pure webpack code (yes webpack is easy, if you don't believe me, [go get my book](https://www.apress.com/us/book/9781484258958) and jump start in a record time).
+- last but not least, If you can't wait anymore several days for others to answer your question about why your compilation is failing in production, not everybody knows how the asset pipeline works internally! using this gem just means you are using webpack :)
+
+Briefly, You want more control, and you feel that pure vanilla webpack can give you that, and save you tons of time!
+
+These reasons should be enough to use this gem, but at the end it's more a subject of taste than reasons, everyone has to choose what a delicious food means!
 
 ## Installation
 
@@ -20,19 +29,57 @@ Or install it yourself as:
 
     $ gem install webpack_native
 
+### Note
+
+The entry point 'application.js' only includes Turbolinks and Rails UJS by default, if you are going to use active storage or action cable, you may need to add them manually
+
+```
+cd app/webpack_native
+yarn add package-name ...
+```
+
+Then require them in application.js, Hint: you can copy that from webpacker `app/javascript/packs/application.js` :)
+
+
 ## Usage
 
-TODO: Write usage instructions here
+Once the installation finished, run the following command:
 
-## Development
+    $ rails g webpack_native:install
 
-After checking out the repo, run `bin/setup` to install dependencies. You can also run `bin/console` for an interactive prompt that will allow you to experiment.
+This will generate a webpack_native folder, that's where all your assets will go (under a src folder), in plus everything else is there too, the package.json, the webpack config file, the node_modules folder will be there as well.
 
-To install this gem onto your local machine, run `bundle exec rake install`. To release a new version, update the version number in `version.rb`, and then run `bundle exec rake release`, which will create a git tag for the version, push git commits and tags, and push the `.gem` file to [rubygems.org](https://rubygems.org).
+For both development and production, the output will be in /public/webpack_native
+
+In the application layout, the following will be added for you:
+
+```
+<%= webpack_stylesheet_url 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+
+"<%= webpack_javascript_url 'application', 'data-turbolinks-track': 'reload' %>
+```
+
+Images are accessible in views using `webpack_image_url`, just put your images under app/webpack_native/src/images and call it from a view like this:
+
+```
+<%= webpack_image_url('cat.jpg') %>
+```
+
+You can also pass other options like you would do with `image_tag`, for example:
+
+```
+<%= webpack_image_url 'beautiful-illustration.png', class: 'responsive-img' %>
+```
+
+### You may not like...
+
+Because you will be using vanilla webpack, to install a JS module/package you will need to `cd` (aka: change directory) to app/webpack_native, then run your `yarn add {package-name}` or `npm install {package-name}`
+
+It's not a big deal, but for some... it might be!
 
 ## Contributing
 
-Bug reports and pull requests are welcome on GitHub at https://github.com/[USERNAME]/webpack_native.
+Bug reports and pull requests are welcome on GitHub at https://github.com/scratchoo/webpack_native.
 
 
 ## License
