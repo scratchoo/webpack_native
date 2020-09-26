@@ -8,7 +8,7 @@ module WebpackNative
   # Your code goes here...
 end
 
-# include WebpackRailsHelper for ActionView
+# include WebpackNativeHelper for ActionView
 require 'active_support/lazy_load_hooks'
 ActiveSupport.on_load :action_view do
   ::ActionView::Base.send :include, WebpackNativeHelper

@@ -2,7 +2,7 @@ module WebpackNativeHelper
 
   def webpack_stylesheet_url(asset, **html_options)
     html_options = html_options.merge(
-      href: "/webpack_assets/#{webpack_manifest_file.fetch("#{asset}.css")}",
+      href: "/webpack_native/#{webpack_manifest_file.fetch("#{asset}.css")}",
       rel: "stylesheet"
     )
     tag.link(html_options).html_safe
@@ -11,7 +11,7 @@ module WebpackNativeHelper
   def webpack_javascript_url(asset, **html_options)
     html_options = html_options.merge(
       type: "text/javascript",
-      src: "/webpack_assets/#{webpack_manifest_file.fetch("#{asset}.js")}"
+      src: "/webpack_native/#{webpack_manifest_file.fetch("#{asset}.js")}"
     )
     content_tag("script".freeze, nil, html_options).html_safe
     # or tag.script(html_options).html_safe
@@ -33,7 +33,7 @@ module WebpackNativeHelper
 
     def load_webpack_manifest
       # Set WEBPACK_MANIFEST_PATH to point to the manifest file
-      webpack_manifest_path = Rails.root.join('public', 'webpack_assets', 'manifest.json')
+      webpack_manifest_path = Rails.root.join('public', 'webpack_native', 'manifest.json')
       JSON.parse(File.read(webpack_manifest_path))
     rescue Errno::ENOENT
       fail "The webpack manifest file does not exist. Hint: run webpack command."

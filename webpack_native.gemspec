@@ -2,7 +2,7 @@ require_relative 'lib/webpack_native/version'
 
 Gem::Specification.new do |spec|
   spec.name          = "webpack_native"
-  spec.version       = WebpackRails::VERSION
+  spec.version       = WebpackNative::VERSION
   spec.authors       = ["scratchoo"]
   spec.email         = ["hello@scratchoo.com"]
 
