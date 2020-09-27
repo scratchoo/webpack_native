@@ -3,10 +3,8 @@ require 'generators/webpack_native/templates/webpack_native_helper'
 require 'railtie' if defined?(Rails)
 require "webpack_native/version"
 
-module WebpackNative
-  class Error < StandardError; end
-  # Your code goes here...
-end
+class WebpackNative::Error < StandardError; end
+# Your code goes here...
 
 # include WebpackNativeHelper for ActionView
 require 'active_support/lazy_load_hooks'
