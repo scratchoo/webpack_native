@@ -25,6 +25,6 @@ Gem::Specification.new do |spec|
   # spec.executables   = spec.files.grep(%r{^exe/}) { |f| File.basename(f) }
   #
 
-  s.files        = Dir["{lib}/**/*", "[A-Z]*"]
-  s.require_path = "lib"
+  spec.files        = Dir["{lib}/**/*", "[A-Z]*"]
+  spec.require_path = "lib"
 end
