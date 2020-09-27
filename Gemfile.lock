@@ -1,7 +1,7 @@
 PATH
   remote: .
   specs:
-    webpack_native (0.1.2)
+    webpack_native (0.1.6)
 
 GEM
   remote: https://rubygems.org/

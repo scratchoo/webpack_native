@@ -20,7 +20,7 @@ class WebpackNative::InstallGenerator < Rails::Generators::Base
 
     javascripts_tag = "<%= webpack_javascript_url 'application', 'data-turbolinks-track': 'reload' %>"
 
-    inject_into_file application_layout, "\n\t\t#{stylesheets_tag}\n\t\t#{javascripts_tag}\n", :before => /<\/head>/
+    inject_into_file application_layout, "\n\t\t#{stylesheets_tag}\n\t\t#{javascripts_tag}\n", :before => '</head>'
   end
 
   # (3) run 'npm install' inside app/webpack_native folder to install the base modules
