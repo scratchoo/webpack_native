@@ -3,7 +3,7 @@ class WebpackNative::HelperGenerator < Rails::Generators::Base
   # our templates location:
   source_root File.expand_path('templates', __dir__)
 
-  this is used to generate/add the helper file to rails project
+  #this is used to generate/add the helper file to rails project
   def add_webpack_helper
     template "webpack_native_helper.rb", File.join("app/helpers", "webpack_native_helper.rb")
   end
