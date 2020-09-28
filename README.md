@@ -18,7 +18,7 @@ These reasons should be enough to use this gem, but at the end it's more a subje
 If you want to use WebpackNative alone on your new project you can skip the default Rails javascript and the asset pipeline using:
 
 ```
-rails new app_name -d postgresql --skip-javascript --no-sprockets
+rails new app_name -d postgresql --skip-javascript --skip-sprockets
 ```
 
 If have an existing project and you want to remove the asset pipeline from your app follow this [tutorial](https://andre.arko.net/2020/07/09/rails-6-with-webpack-in-appassets-and-no-sprockets/)
