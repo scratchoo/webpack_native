@@ -1,6 +1,6 @@
 require "webpack_native/version"
 require 'generators/webpack_native/templates/webpack_native_helper'
-require 'webpack_native/railtie' if defined?(Rails)
+# require 'webpack_native/railtie' if defined?(Rails)
 
 module WebpackNative
   # require the webpack_helper file which is within templates folder
