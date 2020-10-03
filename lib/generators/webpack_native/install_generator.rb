@@ -10,6 +10,9 @@ class WebpackNative::InstallGenerator < Rails::Generators::Base
   # (1) we copy webpack_native folder into Rails /app folder
   def add_webpack_native_folder
     directory 'webpack_native', 'app/webpack_native'
+    # Not sure but using the gem from rubygems... seems like the "images" directory isn't created when this generator runs, in the meantime let's add it (once again maybe?)
+    images_directory = 'app/webpack_native/src/images'
+    empty_directory(images_directory) unless Dir.exist?(images_directory)
   end
 
   # (2) insert necessary helpers in the layouts/application.html.erb to render the <link> and <javascript> tags
