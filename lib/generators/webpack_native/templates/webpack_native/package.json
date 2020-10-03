@@ -4,7 +4,9 @@
   "description": "",
   "main": "webpack.config.js",
   "scripts": {
-    "build": "webpack"
+    "build": "webpack --mode=development --watch --colors",
+    "build:dev": "webpack --mode=development --colors",
+    "build:prod": "webpack --mode=production --colors"
   },
   "author": "",
   "license": "ISC",

@@ -25,12 +25,19 @@ class WebpackNative::InstallGenerator < Rails::Generators::Base
 
   # (3) run 'npm install' inside app/webpack_native folder to install the base modules
   def run_npm_install
+    install_notice = "\n||==>> Installing Node Modules... \n"
+    wait_notice = "** This can take a while. Please be patient!\n\n"
+
+    puts "\e[36m#{install_notice}\e[0m" # colorize output in cyan
+    puts "\e[33m#{wait_notice}\e[0m" # colorize output in brown
+    # more colors can be found at: https://stackoverflow.com/questions/1489183/colorized-ruby-output-to-the-terminal
+
     Dir.chdir "#{Rails.root}/app/webpack_native" do
       %x{ npm install }
     end
   end
 
-  # this step was moved to railtie class, it's better to run webpack within the gem after initialize than injecting the code in config.ru
+  # This step was moved to railtie class, it's better to run webpack within the gem after initialize than injecting the code in config.ru
   # (4) When the server starts, start webpack in a separate thread (this should be done in config.ru)
   # def inject_webpack_command
   #   webpack_command = <<-RUBY
