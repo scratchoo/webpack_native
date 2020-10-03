@@ -34,7 +34,7 @@ and to remove webpacker, the answers here may help:
 Add this line to your application's Gemfile:
 
 ```ruby
-gem 'webpack_native'
+gem 'webpack_native', '~> 0.2.8'
 ```
 
 And then execute:
@@ -92,6 +92,23 @@ You can also pass other options like you would do with `image_tag`, for example:
 Because you will be using vanilla webpack, to install a JS module/package you will need to `cd` (aka: change directory) to app/webpack_native, then run your `yarn add {package-name}` or `npm install {package-name}`
 
 It's not a big deal, but for some... it might be!
+
+### Compile for production
+
+Once you are ready to go for production, just run
+
+```
+rails g webpack_native:prod
+```
+
+This is just a shortcut (should we call it so?) to
+
+```
+cd app/webpack_native
+npm run build --mode=production
+```
+
+The same command exist for development (in case you need it) just replace :prod by :dev (yep! you guessed it already.)
 
 ## Contributing
 
