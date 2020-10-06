@@ -36,7 +36,7 @@ class WebpackNative::InstallGenerator < Rails::Generators::Base
     # more colors can be found at: https://stackoverflow.com/questions/1489183/colorized-ruby-output-to-the-terminal
 
     Dir.chdir "#{Rails.root}/app/webpack_native" do
-      %x{ npm install }
+      %x{ yarn install } # 88% + 80% faster than npm install
     end
   end
 
