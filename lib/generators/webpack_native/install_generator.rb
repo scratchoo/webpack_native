@@ -40,6 +40,18 @@ class WebpackNative::InstallGenerator < Rails::Generators::Base
     end
   end
 
+  def add_node_modules_to_gitignore
+    puts "\nAdding /app/webpack_native/node_modules to .gitignore...\n"
+    folder_to_ignore = '/app/webpack_native/node_modules'
+    # add webpack_native's node_modules folder to gitignore if it isn't added yet
+    %x{ grep -qxF '#{folder_to_ignore}' .gitignore || echo '#{folder_to_ignore}' >> .gitignore }
+    puts "=> Done!"
+  end
+
+  def output_installation_finished_msg
+    puts "\n\e[32m*** WebpackNative - installation finished. ***\e[0m\n"
+  end
+
   # This step was moved to railtie class, it's better to run webpack within the gem after initialize than injecting the code in config.ru
   # (4) When the server starts, start webpack in a separate thread (this should be done in config.ru)
   # def inject_webpack_command
