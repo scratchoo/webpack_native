@@ -10,7 +10,7 @@ class WebpackNative::Railtie < ::Rails::Railtie
   initializer "webpack_native_set_manifest" do
     if Rails.env.production?
       require_relative 'webpack_native_helper'
-      Rails.configuration.x.webpack_native.webpack_manifest_file = WebpackNativeHelper.load_webpack_manifest
+      Rails.configuration.x.webpack_native.webpack_manifest_file = WebpackNative::WebpackNativeHelper.load_webpack_manifest
     end
   end
 
