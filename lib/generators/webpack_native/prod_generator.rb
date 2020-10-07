@@ -6,6 +6,7 @@ class WebpackNative::ProdGenerator < Rails::Generators::Base
 
     Mutex.new.synchronize do
       Dir.chdir "#{Rails.root}/app/webpack_native" do
+        %x{ yarn install }
         result = %x{ npm run build:prod }
         puts "\n"
         puts result
