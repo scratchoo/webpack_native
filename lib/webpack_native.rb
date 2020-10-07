@@ -1,5 +1,5 @@
 require "webpack_native/version"
-require 'generators/webpack_native/templates/webpack_native_helper'
+require 'webpack_native/webpack_native_helper'
 require 'webpack_native/runner'
 require 'webpack_native/railtie' if defined?(Rails)
 
@@ -16,5 +16,5 @@ end
 
 # include WebpackNativeHelper for ActionView
 ActiveSupport.on_load :action_view do
-  ::ActionView::Base.send :include, WebpackNativeHelper
+  ::ActionView::Base.send :include, WebpackNative::WebpackNativeHelper
 end

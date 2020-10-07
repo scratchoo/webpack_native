@@ -1,4 +1,4 @@
-module WebpackNativeHelper
+module WebpackNative::WebpackNativeHelper
 
   def webpack_stylesheet_url(asset, **html_options)
     html_options = html_options.merge(
