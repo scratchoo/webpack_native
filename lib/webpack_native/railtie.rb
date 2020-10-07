@@ -26,7 +26,7 @@ class WebpackNative::Railtie < ::Rails::Railtie
 
   initializer "run_webpack_build_cmd" do
     config.after_initialize do
-      if defined?(Rails::Server)
+      if defined?(Rails::Server) && Rails.env.development?
         Thread.new { start_webpack }
       end
     end
