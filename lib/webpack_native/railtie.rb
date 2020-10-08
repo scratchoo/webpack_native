@@ -7,6 +7,14 @@ class WebpackNative::Railtie < ::Rails::Railtie
     WebpackNative.logger = ActiveSupport::Logger.new(STDOUT)
   end
 
+  # Zeitwerk raise an error: set_autoloads_in_dir': wrong constant name Path-dirname inferred by Module from directory (Zeitwerk::NameError) ---> app/webpack_native/node_modules/path-dirname
+  # to prevent Zeitwerk from eager loading webpack_native folder we use this:
+  initializer "zeitwerk_prevent_loading_webpack_native" do
+    if Rails.autoloaders.zeitwerk_enabled?
+      Rails.autoloaders.main.ignore(Rails.root.join('app/webpack_native'))
+    end
+  end
+
   initializer "webpack_native_set_manifest" do
     if Rails.env.production?
       manifest_path = "#{Rails.root}/public/webpack_native/manifest.json"
