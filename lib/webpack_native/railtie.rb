@@ -1,6 +1,6 @@
 require 'rails'
 require "open3"
-require "FileUtils"
+require "fileutils"
 
 class WebpackNative::Railtie < ::Rails::Railtie
 
