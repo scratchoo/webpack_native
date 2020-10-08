@@ -6,6 +6,8 @@ class WebpackNative::DevGenerator < Rails::Generators::Base
 
     Mutex.new.synchronize do
       Dir.chdir "#{Rails.root}/app/webpack_native" do
+        Dir.mkdir('src/images') unless Dir.exist?('src/images')
+        %x{ yarn install }
         result = %x{ npm run build:dev }
         puts "\n"
         puts result
