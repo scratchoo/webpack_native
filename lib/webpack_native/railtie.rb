@@ -1,5 +1,6 @@
 require 'rails'
 require "open3"
+require "FileUtils"
 
 class WebpackNative::Railtie < ::Rails::Railtie
 
@@ -20,7 +21,7 @@ class WebpackNative::Railtie < ::Rails::Railtie
       manifest_path = "#{Rails.root}/public/webpack_native/manifest.json"
       # create manifest.json file if it doesn't exist with an empty json {} to prevent raising error in WebpackNativeHelper.load_webpack_manifest if a restart of a service happen (i.e delayed_job restart) that causes rails to load
       if !File.file?(manifest_path)
-        #FileUtils.touch
+        FileUtils.touch manifest_path
         File.write manifest_path, "{}"
       end
       require_relative 'webpack_native_helper'
