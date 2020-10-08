@@ -9,6 +9,12 @@ class WebpackNative::Railtie < ::Rails::Railtie
 
   initializer "webpack_native_set_manifest" do
     if Rails.env.production?
+      manifest_path = "#{Rails.root}/public/webpack_native/manifest.json"
+      # create manifest.json file if it doesn't exist with an empty json {} to prevent raising error in WebpackNativeHelper.load_webpack_manifest if a restart of a service happen (i.e delayed_job restart) that causes rails to load
+      if !File.file?(manifest_path)
+        #FileUtils.touch
+        File.write manifest_path, "{}"
+      end
       require_relative 'webpack_native_helper'
       Rails.configuration.x.webpack_native.webpack_manifest_file = WebpackNative::WebpackNativeHelper.load_webpack_manifest
     end
