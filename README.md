@@ -89,9 +89,9 @@ You can also pass other options like you would do with `image_tag`, for example:
 <%= webpack_image_tag 'beautiful-illustration.png', class: 'responsive-img' %>
 ```
 
-**Note:** if you are using webpack_native version 0.4.3 or earlier, you should replace `webpack_stylesheet_url`, `webpack_javascript_url` and `webpack_image_url` respectively by `webpack_stylesheet_tag`, `webpack_javascript_tag` and `webpack_image_tag`
+**Note:** if you were using webpack_native version 0.4.3 or earlier, you should replace `webpack_stylesheet_url`, `webpack_javascript_url` and `webpack_image_url` respectively by `webpack_stylesheet_tag`, `webpack_javascript_tag` and `webpack_image_tag`
 
-Using webpack_***_url will return the path string to the asset element and not the tag, so consider using webpack_***_tag whenever you need to output a tag.
+Using `webpack_***_url` will return the url string to the asset element and not the tag, the same applies for `webpack_***_path`, so consider using webpack_***_tag whenever you need to output a tag.
 
 ### You may not like...
 

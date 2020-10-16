@@ -40,7 +40,7 @@ module WebpackNative::WebpackNativeHelper
     image_url(webpack_native_lookup(image), **options)
   end
 
-  def webpack_image_url(image, **options)
+  def webpack_image_path(image, **options)
     image_path(webpack_native_lookup(image), **options)
   end
 
