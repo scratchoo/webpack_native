@@ -72,22 +72,26 @@ For both development and production, the output will be in /public/webpack_nativ
 In the application layout, the following will be added for you:
 
 ```
-<%= webpack_stylesheet_url 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+<%= webpack_stylesheet_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
 
-"<%= webpack_javascript_url 'application', 'data-turbolinks-track': 'reload' %>
+"<%= webpack_javascript_tag 'application', 'data-turbolinks-track': 'reload' %>
 ```
 
-Images are accessible in views using `webpack_image_url`, just put your images under app/webpack_native/src/images and call it from a view like this:
+Images are accessible in views using `webpack_image_tag`, just put your images under app/webpack_native/src/images and call it from a view like this:
 
 ```
-<%= webpack_image_url('cat.jpg') %>
+<%= webpack_image_tag('cat.jpg') %>
 ```
 
 You can also pass other options like you would do with `image_tag`, for example:
 
 ```
-<%= webpack_image_url 'beautiful-illustration.png', class: 'responsive-img' %>
+<%= webpack_image_tag 'beautiful-illustration.png', class: 'responsive-img' %>
 ```
+
+**Note:** if you are using webpack_native version 0.4.3 or earlier, you should replace `webpack_stylesheet_url`, `webpack_javascript_url` and `webpack_image_url` respectively by `webpack_stylesheet_tag`, `webpack_javascript_tag` and `webpack_image_tag`
+
+Using webpack_***_url will return the path string to the asset element and not the tag, so consider using webpack_***_tag whenever you need to output a tag.
 
 ### You may not like...
 
