@@ -111,7 +111,14 @@ This is just a shortcut (should we call it so?) to
 
 ```
 cd app/webpack_native
-npm run build --mode=production
+npm run build:prod
+```
+
+Which (in itself) is the equivalent of:
+
+```
+cd app/webpack_native
+webpack --mode=production
 ```
 
 The same command exist for development (in case you need it) just replace :prod by :dev (yep! you guessed it already.)
