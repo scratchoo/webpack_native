@@ -2,38 +2,53 @@ module WebpackNative::WebpackNativeHelper
 
   def webpack_stylesheet_tag(asset, **html_options)
     html_options = html_options.merge(
-      href: "/webpack_native/#{webpack_manifest_file.fetch("#{asset}.css")}",
+      href: webpack_stylesheet_path(asset),
       rel: "stylesheet"
     )
     tag.link(html_options).html_safe
   end
 
-  def webpack_stylesheet_url(asset)
-    "/webpack_native/#{webpack_manifest_file.fetch("#{asset}.css")}"
+  def webpack_stylesheet_path(asset, **options)
+    path_to_asset(webpack_native_lookup("#{asset.gsub('.css', '')}.css"), options)
+  end
+
+  def webpack_stylesheet_url(asset, **options)
+    url_to_asset(webpack_native_lookup("#{asset.gsub('.css', '')}.css"), options)
   end
 
   def webpack_javascript_tag(asset, **html_options)
     html_options = html_options.merge(
       type: "text/javascript",
-      src: "/webpack_native/#{webpack_manifest_file.fetch("#{asset}.js")}"
+      src: webpack_javascript_path(asset)
     )
     content_tag("script".freeze, nil, html_options).html_safe
     # or tag.script(html_options).html_safe
   end
 
-  def webpack_javascript_url(asset)
-    "/webpack_native/#{webpack_manifest_file.fetch("#{asset}.js"
+  def webpack_javascript_url(asset, **options)
+    url_to_asset(webpack_native_lookup("#{asset.gsub('.js', '')}.js"), options)
+  end
+  def webpack_javascript_path(asset, **options)
+    path_to_asset(webpack_native_lookup("#{asset.gsub('.js', '')}.js"), options)
   end
 
-  def webpack_image_tag(file_name, **options)
-    image_tag("/webpack_native/#{file_name}", **options)
+  def webpack_image_tag(image, **options)
+    image_tag(webpack_native_lookup(image), **options)
   end
 
-  def webpack_image_url(file_name, **options)
-    "/webpack_native/#{file_name}"
+  def webpack_image_url(image, **options)
+    image_url(webpack_native_lookup(image), **options)
+  end
+
+  def webpack_image_url(image, **options)
+    image_path(webpack_native_lookup(image), **options)
   end
 
   private
+
+    def webpack_native_lookup(file)
+      "/webpack_native/#{webpack_manifest_file.fetch("#{file}")}"
+    end
 
     def webpack_manifest_file
       # in production, webpack_manifest_file is initialized in railtie.rb file to load one time only, while in development we call load_webpack_manifest on each new request
