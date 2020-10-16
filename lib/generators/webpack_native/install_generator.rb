@@ -19,9 +19,9 @@ class WebpackNative::InstallGenerator < Rails::Generators::Base
   def inject_stylesheets_and_javascript_tags
     application_layout = "#{Rails.root}/app/views/layouts/application.html.erb"
 
-    stylesheets_tag = "<%= webpack_stylesheet_url 'application', media: 'all', 'data-turbolinks-track': 'reload' %>"
+    stylesheets_tag = "<%= webpack_stylesheet_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>"
 
-    javascripts_tag = "<%= webpack_javascript_url 'application', 'data-turbolinks-track': 'reload' %>"
+    javascripts_tag = "<%= webpack_javascript_tag 'application', 'data-turbolinks-track': 'reload' %>"
 
     inject_into_file application_layout, "\n\t\t#{stylesheets_tag}\n\t\t#{javascripts_tag}\n", :before => '</head>'
   end
