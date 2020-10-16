@@ -36,7 +36,7 @@ and to remove webpacker, the answers here may help:
 Add this line to your application's Gemfile:
 
 ```ruby
-gem 'webpack_native', '~> 0.4.2'
+gem 'webpack_native', '~> 0.4.5'
 ```
 
 And then execute:
