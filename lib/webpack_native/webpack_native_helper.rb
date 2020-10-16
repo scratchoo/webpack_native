@@ -1,6 +1,6 @@
 module WebpackNative::WebpackNativeHelper
 
-  def webpack_stylesheet_url(asset, **html_options)
+  def webpack_stylesheet_tag(asset, **html_options)
     html_options = html_options.merge(
       href: "/webpack_native/#{webpack_manifest_file.fetch("#{asset}.css")}",
       rel: "stylesheet"
@@ -8,7 +8,11 @@ module WebpackNative::WebpackNativeHelper
     tag.link(html_options).html_safe
   end
 
-  def webpack_javascript_url(asset, **html_options)
+  def webpack_stylesheet_url(asset)
+    "/webpack_native/#{webpack_manifest_file.fetch("#{asset}.css")}"
+  end
+
+  def webpack_javascript_tag(asset, **html_options)
     html_options = html_options.merge(
       type: "text/javascript",
       src: "/webpack_native/#{webpack_manifest_file.fetch("#{asset}.js")}"
@@ -17,8 +21,16 @@ module WebpackNative::WebpackNativeHelper
     # or tag.script(html_options).html_safe
   end
 
-  def webpack_image_url(file_name, **options)
+  def webpack_javascript_url(asset)
+    "/webpack_native/#{webpack_manifest_file.fetch("#{asset}.js"
+  end
+
+  def webpack_image_tag(file_name, **options)
     image_tag("/webpack_native/#{file_name}", **options)
+  end
+
+  def webpack_image_url(file_name, **options)
+    "/webpack_native/#{file_name}"
   end
 
   private
