@@ -123,6 +123,28 @@ webpack --mode=production
 
 The same command exist for development (in case you need it) just replace :prod by :dev (yep! you guessed it already.)
 
+### Gzip and Brotli compression in production
+
+By default, the configuration uses compressionPlugin to compress JS, CSS etc (when compiling for production), so in addition to the minified static files, you will have extra .gz and .br files which will be primarily sent by your server to the user's browser in case it's configured to do so, an example of nginx
+
+```
+server {
+  listen 80;
+  server_name www.website.com;
+  root /app/public/path;
+  # ...
+  # ...
+  location ~ ^/(webpack_native)/ {
+    gzip_static on; # turn on gzip compression (supported out of the box)
+    brotli_static on; # add this if you want to support brotli as well (but you need to install brotli module)
+    expires max;
+    add_header Cache-Control public;
+  }
+}
+```
+
+webpack_native use zopfli algorithm to produce gzip files, yep zopfli compression is better than the standard gzip algorithm, and the usage + browsers support is the same, but Brotli compress is by far much better, however in order to use it, you will need to install brotli module and enable it in your nginx configuration, installation and usage of Brotli module can be found [here](https://github.com/google/ngx_brotli)
+
 ## Contributing
 
 Bug reports and pull requests are welcome on GitHub at https://github.com/scratchoo/webpack_native.
