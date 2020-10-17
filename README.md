@@ -143,7 +143,9 @@ server {
 }
 ```
 
-webpack_native use zopfli algorithm to produce gzip files, yep zopfli compression is better than the standard gzip algorithm (while the usage + browsers support are the same) but Brotli compress is by far much better, however in order to use it, you will need to install brotli module and enable it in your nginx configuration, installation and usage of Brotli module can be found [here](https://github.com/google/ngx_brotli)
+webpack_native use zopfli algorithm to produce gzip files, yep zopfli compression is better than the standard gzip algorithm (while the usage + browsers support are the same) but Brotli compression is by far much better.
+
+In case you want to add Brotli compression to your server, you will need to install brotli module and enable it (in your nginx configuration for example), installation and usage of Brotli module can be found [here](https://github.com/google/ngx_brotli)
 
 ## Contributing
 
