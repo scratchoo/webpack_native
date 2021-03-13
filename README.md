@@ -194,7 +194,7 @@ android-chrome-192x192.png (192x192)
 
 site.webmanifest
 
-you can generate all these formats easily using some online favicon generator like https://favicon.io (just make sure to edit site.webmanifest to prefix the name of files there with the folder name /webpack_native like shown in the example above)
+you can generate all these formats easily using the online favicon generator: https://favicon.io
 
 ## Contributing
 
