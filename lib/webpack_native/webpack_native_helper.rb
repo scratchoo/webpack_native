@@ -50,10 +50,10 @@ module WebpackNative::WebpackNativeHelper
   # <%= webpack_webmanifest('manifest.webmanifest') %>
   
   # result:
-  #<link rel="apple-touch-icon" sizes="180x180" href="/webpack_native/apple-touch-icon.png">
-  #<link rel="icon" type="image/png" sizes="32x32" href="/webpack_native/favicon-32x32.png">
-  #<link rel="icon" type="image/png" sizes="16x16" href="/webpack_native/favicon-16x16.png">
-  #<link rel="manifest" href="/webpack_native/site.webmanifest">
+  #<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+  #<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+  #<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+  #<link rel="manifest" href="/site.webmanifest">
 
   def webpack_favicons(*args)
     tags = []
@@ -66,7 +66,7 @@ module WebpackNative::WebpackNativeHelper
         manifest = favicon
         html_options = {
           rel: 'manifest',
-          href: webpack_native_lookup(manifest)
+          href: manifest
         }
         
       else
@@ -83,7 +83,7 @@ module WebpackNative::WebpackNativeHelper
         html_options = {
           rel: filename == 'apple-touch-icon' ? 'apple-touch-icon' : 'icon',
           type: mimetypes[ext],
-          href: webpack_native_lookup(favicon)
+          href: favicon
         }
         
         sizes = filename[/(.+)?([0-9]{2,3}x[0-9]{2,3})(.+)?/, 2]

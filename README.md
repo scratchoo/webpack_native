@@ -36,7 +36,7 @@ and to remove webpacker, the answers here may help:
 Add this line to your application's Gemfile:
 
 ```ruby
-gem 'webpack_native', '~> 0.5.3'
+gem 'webpack_native', '~> 0.5.4'
 ```
 
 And then execute:
@@ -149,7 +149,7 @@ In case you want to add Brotli compression to your server, you will need to inst
 
 ### Favicon
 
-If you have a set of favicons (maybe with a site.webmanifest file) you can simply put them in the images folder and just add the following line to your html layout:
+If you have a set of favicons (maybe with a site.webmanifest file) you can simply put them under **app/webpack_native/src/favicons** folder and just add the following line to your html layout:
 
 ```
 <%= webpack_favicons('apple-touch-icon.png', 'favicon-32x32.png', 'favicon-16x16.png', 'site.webmanifest') %>
@@ -157,9 +157,9 @@ If you have a set of favicons (maybe with a site.webmanifest file) you can simpl
 That will generate the following markup:
 
 ```
-<link rel="apple-touch-icon" sizes="180x180" href="/webpack_native/apple-touch-icon.png">
-<link rel="icon" type="image/png" sizes="32x32" href="/webpack_native/favicon-32x32.png">
-<link rel="icon" type="image/png" sizes="16x16" href="/webpack_native/favicon-16x16.png">
+<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
 <link rel="manifest" href="/site.webmanifest">
 ```
 
@@ -171,8 +171,8 @@ the content of site.webmanifest would be something like:
   "short_name":"",
   "icons":
     [
-      {"src":"/webpack_native/android-chrome-192x192.png","sizes":"192x192","type":"image/png"},
-      {"src":"/webpack_native/android-chrome-512x512.png","sizes":"512x512","type":"image/png"}
+      {"src":"/android-chrome-192x192.png","sizes":"192x192","type":"image/png"},
+      {"src":"/android-chrome-512x512.png","sizes":"512x512","type":"image/png"}
     ],
   "theme_color":"#ffffff",
   "background_color":"#ffffff",
@@ -183,10 +183,15 @@ the content of site.webmanifest would be something like:
 So, in total you will have the following files in your images folder:
 
 apple-touch-icon.png (180x180)
+
 favicon-32x32.png (32x32)
+
 favicon-16x16.png (16x16)
+
 android-chrome-512x512.png (512x512)
+
 android-chrome-192x192.png (192x192)
+
 site.webmanifest
 
 you can generate all these formats easily using some online favicon generator like https://favicon.io (just make sure to edit site.webmanifest to prefix the name of files there with the folder name /webpack_native like shown in the example above)
