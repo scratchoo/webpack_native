@@ -17,7 +17,8 @@ class WebpackNative::Railtie < ::Rails::Railtie
   end
 
   initializer "webpack_native_set_manifest" do
-    if Rails.env.production?
+    
+    if Rails.env.production? # on production only
 
       # create public/webpack_native if it doesn't exist:
 
@@ -39,6 +40,7 @@ class WebpackNative::Railtie < ::Rails::Railtie
       Rails.configuration.x.webpack_native.webpack_manifest_file = WebpackNative::WebpackNativeHelper.load_webpack_manifest
 
     end
+    
   end
 
   def start_webpack

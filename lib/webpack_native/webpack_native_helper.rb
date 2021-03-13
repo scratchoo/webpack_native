@@ -1,5 +1,5 @@
 module WebpackNative::WebpackNativeHelper
-
+  
   def webpack_stylesheet_tag(asset, **html_options)
     html_options = html_options.merge(
       href: webpack_stylesheet_path(asset),
@@ -43,6 +43,66 @@ module WebpackNative::WebpackNativeHelper
   def webpack_image_path(image, **options)
     image_path(webpack_native_lookup(image), **options)
   end
+  
+  # ====== Favicon helpers ======
+  # usage:
+  # <%= webpack_favicons('apple-touch-icon.png', 'favicon-32x32.png', 'favicon-16x16.png') %>
+  # <%= webpack_webmanifest('manifest.webmanifest') %>
+  
+  # result:
+  #<link rel="apple-touch-icon" sizes="180x180" href="/webpack_native/apple-touch-icon.png">
+  #<link rel="icon" type="image/png" sizes="32x32" href="/webpack_native/favicon-32x32.png">
+  #<link rel="icon" type="image/png" sizes="16x16" href="/webpack_native/favicon-16x16.png">
+  #<link rel="manifest" href="/webpack_native/site.webmanifest">
+
+  def webpack_favicons(*args)
+    tags = []
+    args.each do |favicon|
+      
+      filename = File.basename(favicon, ".*") # exclude the extension
+      ext = File.extname(favicon)
+      
+      if ext == '.webmanifest'
+        manifest = favicon
+        html_options = {
+          rel: 'manifest',
+          href: webpack_native_lookup(manifest)
+        }
+        
+      else
+        mimetypes = {
+          '.png' => 'image/png',
+          '.jpg' => 'image/jpg',
+          '.jpeg' => 'image/jpeg',
+          '.webp' => 'image/webp',
+          '.tiff' => 'image/tiff',
+          '.svg' => 'image/svg+xml',
+          '.ico' => 'image/x-icon'
+        }
+        
+        html_options = {
+          rel: filename == 'apple-touch-icon' ? 'apple-touch-icon' : 'icon',
+          type: mimetypes[ext],
+          href: webpack_native_lookup(favicon)
+        }
+        
+        sizes = filename[/(.+)?([0-9]{2,3}x[0-9]{2,3})(.+)?/, 2]
+        
+        sizes = '180×180' if filename == 'apple-touch-icon'
+          
+        html_options = html_options.merge({sizes: sizes}) unless sizes.nil?
+        
+      end
+       
+      tags << tag.link(html_options)
+      
+    end
+    
+    return tags.join.html_safe
+  
+  end
+  
+  # ====== End favicon helpers ======
 
   private
 
