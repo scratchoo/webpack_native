@@ -66,7 +66,7 @@ module WebpackNative::WebpackNativeHelper
         manifest = favicon
         html_options = {
           rel: 'manifest',
-          href: manifest
+          href: "/#{manifest}"
         }
         
       else
@@ -83,7 +83,7 @@ module WebpackNative::WebpackNativeHelper
         html_options = {
           rel: filename == 'apple-touch-icon' ? 'apple-touch-icon' : 'icon',
           type: mimetypes[ext],
-          href: favicon
+          href: "/#{favicon}"
         }
         
         sizes = filename[/(.+)?([0-9]{2,3}x[0-9]{2,3})(.+)?/, 2]
