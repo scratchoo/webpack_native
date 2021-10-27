@@ -5,7 +5,9 @@ module WebpackNative::WebpackNativeHelper
       href: webpack_stylesheet_path(asset),
       rel: "stylesheet"
     )
-    tag.link(html_options).html_safe
+    #tag.link is not working correctly on (Rails 6.1.4.1 + ruby3)
+    #tag.link(html_options).html_safe
+    content_tag("link".freeze, nil, html_options).html_safe
   end
 
   def webpack_stylesheet_path(asset, **options)
@@ -94,7 +96,8 @@ module WebpackNative::WebpackNativeHelper
         
       end
        
-      tags << tag.link(html_options)
+      # tags << tag.link(html_options)
+      tags << content_tag("link".freeze, nil, html_options)
       
     end
     

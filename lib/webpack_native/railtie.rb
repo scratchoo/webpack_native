@@ -56,7 +56,10 @@ class WebpackNative::Railtie < ::Rails::Railtie
   initializer "run_webpack_build_cmd" do
     config.after_initialize do
       if defined?(Rails::Server) && Rails.env.development?
-        Thread.new { start_webpack }
+        # starting this in new thread is causing bug in ruby 3.0.2
+        # conflicting chdir during another chdir block
+        #Thread.new { start_webpack }
+        fork { start_webpack }
       end
     end
   end
